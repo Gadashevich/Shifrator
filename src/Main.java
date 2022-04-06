@@ -1,11 +1,7 @@
 public class Main {
 
+    public static void main(String[] args) throws Exception {
+       Menu.mainMenu();
 
-//погуглить как работает цезарь,(возможно реализация его в коде)
-
-    public static void main(String[] args) {
-        Menu.menu();
     }
-
-    
 }

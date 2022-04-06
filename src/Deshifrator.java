@@ -1,16 +1,60 @@
+import java.io.BufferedWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Scanner;
+
 public class Deshifrator {
 
+    Scanner scanner = new Scanner(System.in);
 
-    public void deshifratorMenu() {
-
+    public void deshifratorMenu() throws Exception {
         System.out.println();
-        System.out.println("~~~~~~ Расшифровка текста ~~~~~~");
-        System.out.println("1. Вернутся в главное меню");
-        System.out.println("2. Расшифровать файл");
-        System.out.println("3. Расшифровать введенный текст");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~ Расшифровка текста ~~~~~~\n1. Расшифровать содержимое файла\n2. Расшифровать введенный текст\n3. Вернутся в главное меню\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
+        if (scanner.hasNextInt()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            switch (number) {
+                case 1:
+                    //Расшифровать содержимое файла
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Введите путь к файлу: ");
+                    Path path = Path.of(scanner.nextLine());
+                    List<String> list = Files.readAllLines(path);
+                    String text = list.toString();
+                    char[] chars = text.toCharArray();
+                    System.out.println("Введи ключ - ");
+                    int key = Integer.parseInt(scanner.nextLine());
+                    deshifrator(chars, key);
+                    Files.delete(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\shifrator.txt"));
+                    Files.createFile(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\shifrator.txt"));
+                    BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\shifrator.txt"));
+                    bufferedWriter.write(deshifrator(chars,key));
+                    break;
+                case 2:
+                    System.out.println("Введите текст: ");
+                    // deshifratorText();
+                    break;
+                case 3:
+                    Menu.mainMenu();
+                    break;
+                default:
+                    System.out.println("Такого пункта меню нет");
+                    deshifratorMenu();
+                    break;
+            }
+        }
     }
 
-
+    public String deshifrator(char[] chars, int key) throws Exception {
+         StringBuilder newText = new StringBuilder();
+        for (int i = 1; i < chars.length - 1; i++) {
+            if (chars[i] != ' ') {
+               newText.append((char) (chars[i] + key));
+            } else {
+                newText.append(' ');
+            }
+        }
+        return newText.toString();
+    }
 }
