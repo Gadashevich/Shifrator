@@ -6,19 +6,19 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
-        System.out.println("~~~~~~ Главное меню ~~~~~~\n1. Расшифровать текст\n2. Зашифровать текст\n3. Завершить программу\n9. О программе\n~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~ Главное меню ~~~~~~\n1. Зашифровать текст\n2. Расшифровать текст\n3. Завершить программу\n9. О программе\n~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 
         if (scanner.hasNextInt()) {
             int number = Integer.valueOf(scanner.nextLine());
             switch (number) {
                 case 1:
-                    Deshifrator deshifrator = new Deshifrator();
-                    deshifrator.deshifratorMenu();
-                    break;
-                case 2:
                     Shifrator shifrator = new Shifrator();
                     shifrator.shifratorMenu();
+                    break;
+                case 2:
+                    Deshifrator deshifrator = new Deshifrator();
+                    deshifrator.deshifratorMenu();
                     break;
                 case 3:
                     System.out.println("Спасибо что воспользовались нашей программой\nПрограмма завершена");

@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Deshifrator {
-
+    String text="";
+    int key ;
+    char[] chars;
     Scanner scanner = new Scanner(System.in);
 
     public void deshifratorMenu() throws Exception {
@@ -17,23 +19,29 @@ public class Deshifrator {
             switch (number) {
                 case 1:
                     //Расшифровать содержимое файла
-                    Scanner scanner = new Scanner(System.in);
                     System.out.println("Введите путь к файлу: ");
                     Path path = Path.of(scanner.nextLine());
                     List<String> list = Files.readAllLines(path);
-                    String text = list.toString();
-                    char[] chars = text.toCharArray();
+                    text = list.toString();
+                    chars = text.toCharArray();
                     System.out.println("Введи ключ - ");
-                    int key = Integer.parseInt(scanner.nextLine());
+                    key = Integer.parseInt(scanner.nextLine());
                     deshifrator(chars, key);
-                    Files.delete(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\shifrator.txt"));
-                    Files.createFile(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\shifrator.txt"));
-                    BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\shifrator.txt"));
+                    Files.delete(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\Deshifrator.txt"));
+                    Files.createFile(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\Deshifrator.txt"));
+                    BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of("C:\\\\Users\\\\Computer\\\\IdeaProjects\\\\Shifrator\\\\src\\\\Deshifrator.txt"));
                     bufferedWriter.write(deshifrator(chars,key));
+                    System.out.println("Ваш расшифрованный текст лежит  - C:\\Users\\Computer\\IdeaProjects\\Shifrator\\src\\Deshifrator.txt");
+                    Menu.mainMenu();
                     break;
                 case 2:
                     System.out.println("Введите текст: ");
-                    // deshifratorText();
+                    text = scanner.nextLine();
+                    chars = text.toCharArray();
+                    System.out.println("Введи ключ - ");
+                    key = Integer.parseInt(scanner.nextLine());
+                    System.out.println( "Ваш расшифрованный текст - " + deshifrator(chars, key));
+                    Menu.mainMenu();
                     break;
                 case 3:
                     Menu.mainMenu();
@@ -48,9 +56,9 @@ public class Deshifrator {
 
     public String deshifrator(char[] chars, int key) throws Exception {
          StringBuilder newText = new StringBuilder();
-        for (int i = 1; i < chars.length - 1; i++) {
+        for (int i = 0; i < chars.length ; i++) {
             if (chars[i] != ' ') {
-               newText.append((char) (chars[i] + key));
+               newText.append((char) (chars[i] - key));
             } else {
                 newText.append(' ');
             }
