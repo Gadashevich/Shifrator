@@ -1,24 +1,19 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class Encrypted {
+public class EncryptedFile {
     Scanner scanner = new Scanner(System.in);
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     CipherCeaser cipherCeaser = new CipherCeaser();
-
 
     String pathNotEncrypted;
     Path pathSaveCryptedText = null;
     int key = 0;
-    String message;
 
-    public void inputFile() throws Exception {
+    private void inputFile() throws Exception {
         System.out.println("Введите путь к файлу: ");
         pathNotEncrypted = scanner.nextLine();
         System.out.println("Введи ключ - ");
@@ -70,23 +65,5 @@ public class Encrypted {
             System.out.println("Содержимое файла успешно расшифрованно");
             System.out.println("Файл сохранен в папке " + pathSaveCryptedText.toAbsolutePath());
         }
-    }
-
-    public void inputText() throws Exception {
-        System.out.println("Введите текст: ");
-        message = reader.readLine();
-        System.out.println("Введи ключ - ");
-        key = Integer.parseInt(reader.readLine());
-        System.out.println("Ваш зашифрованный текст - ");
-    }
-
-    public void encryptedText() throws Exception {
-        inputText();
-        System.out.println(cipherCeaser.encrypt(message, key));
-    }
-
-    public void unEncryptedText() throws Exception {
-        inputText();
-        System.out.println(cipherCeaser.unEncrypt(message, key));
     }
 }
