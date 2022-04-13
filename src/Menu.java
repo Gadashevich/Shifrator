@@ -54,15 +54,19 @@ public class Menu {
             switch (number) {
                 case 1:
                     encrypted.encryptedFile();
+                    mainMenu();
                     break;
                 case 2:
                     encrypted.encryptedText();
+                    mainMenu();
                     break;
                 case 3:
                     encrypted.unEncryptedFile();
+                    mainMenu();
                     break;
                 case 4:
                     encrypted.unEncryptedText();
+                    mainMenu();
                     break;
                 case 5:
                     mainMenu();
