@@ -12,7 +12,6 @@ public class Encrypted {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     CipherCeaser cipherCeaser = new CipherCeaser();
 
-
     public void encryptedFile() throws Exception {
         System.out.println("Введите путь к файлу: ");
         String pathNotEncrypted = scanner.nextLine();
@@ -49,8 +48,6 @@ public class Encrypted {
             System.out.println("Файл сохранен в папке " + pathSaveCryptedText.toAbsolutePath());
         }
     }
-
-// C:\Users\Computer\IdeaProjects\Shifrator\src\test1.txt
 
     public void unEncryptedFile() throws Exception {
         System.out.println("Введите путь к файлу: ");
@@ -97,7 +94,6 @@ public class Encrypted {
             key = Integer.parseInt(reader.readLine());
         System.out.println("Ваш зашифрованный текст - ");
         System.out.println(cipherCeaser.encrypt(message, key));
-
     }
 
     public void unEncryptedText() throws IOException {
