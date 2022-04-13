@@ -40,7 +40,6 @@ public class Menu {
         }
     }
 
-
     private void menuCipherCeaser() throws Exception {
         EncryptedFile encryptedFile = new EncryptedFile();
         EncryptedText encryptedText = new EncryptedText();
