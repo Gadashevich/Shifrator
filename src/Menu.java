@@ -7,7 +7,7 @@ public class Menu {
         System.out.println();
         System.out.println("~~~~~~ Главное меню ~~~~~~\n" +
                 "1. Шифр Цезаря\n" +
-                "2. Шифр по другому\n" +
+                "2. Расшифровать методом БрутФорс\n" +
                 "3. Завершить программу\n" +
                 "9. О программе\n" +
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -18,7 +18,7 @@ public class Menu {
                     menuCipherCeaser();
                     break;
                 case 2:
-
+                    menuBruteForceText();
                     break;
                 case 3:
                     System.out.println("Спасибо что воспользовались нашей программой\n" +
@@ -40,8 +40,9 @@ public class Menu {
         }
     }
 
-    public void menuCipherCeaser() throws Exception {
-        Encrypted encrypted = new Encrypted();
+    private void menuCipherCeaser() throws Exception {
+        EncryptedFile encryptedFile = new EncryptedFile();
+        EncryptedText encryptedText = new EncryptedText();
         System.out.println();
         System.out.println("~~~~~~ Шифровка текста методом Цезаря ~~~\n" +
                 "1. Зашифровать содержимое файла\n" +
@@ -53,16 +54,20 @@ public class Menu {
             int number = Integer.parseInt(scanner.nextLine());
             switch (number) {
                 case 1:
-                    encrypted.encryptedFile();
+                    encryptedFile.encryptedFile();
+                    mainMenu();
                     break;
                 case 2:
-                    encrypted.encryptedText();
+                    encryptedText.encryptedText();
+                    mainMenu();
                     break;
                 case 3:
-                    encrypted.unEncryptedFile();
+                    encryptedFile.unEncryptedFile();
+                    mainMenu();
                     break;
                 case 4:
-                    encrypted.unEncryptedText();
+                    encryptedText.unEncryptedText();
+                    mainMenu();
                     break;
                 case 5:
                     mainMenu();
@@ -76,4 +81,37 @@ public class Menu {
             mainMenu();
         }
     }
+
+    private void menuBruteForceText() throws Exception {
+        BruteForceFile bruteForceFile = new BruteForceFile();
+        BruteForceText bruteForceText = new BruteForceText();
+        System.out.println();
+        System.out.println("~~~~~~ Расшифровка методом БрутФорс ~~~\n" +
+                "1. Расшифровать файл\n" +
+                "2. Расшифровать текст\n" +
+                "3. Вернутся в главное меню\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        if (scanner.hasNextInt()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            switch (number) {
+                case 1:
+                    bruteForceFile.bruteForceFile();
+                    mainMenu();
+                    break;
+                case 2:
+                    bruteForceText.bruteForceText();
+                    mainMenu();
+                    break;
+                case 3:
+                    mainMenu();
+                    break;
+                default:
+                    System.out.println("Такого пункта меню нет");
+                    mainMenu();
+            }
+        } else {
+            System.out.println("Введите число");
+            mainMenu();
+        }
+    }
 }
+

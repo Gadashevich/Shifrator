@@ -1,13 +1,12 @@
 public class CipherCeaser {
 
     private static final String ALPHABET_PART_ONE = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюя" +
-            "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ.,\":-!? +-*/\\@#$%^&(){}[];'|`~=_©«»'—0123456789";
+            "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ.,\":-!? +-*/\\@#$%^&(){}[];'|`~=_©«»—0123456789\n";
     private static final String ALPHABET_PART_TWO = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюя" +
-            "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ.,\":-!? +-*/\\@#$%^&(){}[];'|`~=_©«»'—0123456789";
-
+            "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ.,\":-!? +-*/\\@#$%^&(){}[];'|`~=_©«»—0123456789\n";
 
     private static final String ALPHABET = ALPHABET_PART_ONE + ALPHABET_PART_TWO;
-    private int alphabetSize = ALPHABET.length() / 2;
+    int alphabetSize = ALPHABET.length() / 2;
 
     public String encrypt(String message, int key) {  //Шифруем данные
         StringBuilder stringBuilder = new StringBuilder();
@@ -16,7 +15,7 @@ public class CipherCeaser {
             int newIndexAlfphabet;
             char charAt = 0;
             if (originalIndexAlfphabet >= 0) {
-                if (key >= 0) {
+                if (key > 0) {
                     newIndexAlfphabet = (originalIndexAlfphabet + key) % (ALPHABET.length() / 2);
                 } else {
                     int newKey = key % (ALPHABET.length() / 2);
@@ -30,7 +29,6 @@ public class CipherCeaser {
     }
 
     public String unEncrypt(String message, int key) {  //Расшифровываем данные
-        return encrypt(message, key * (-1));
+            return encrypt(message, key * (-1));
     }
-
 }
