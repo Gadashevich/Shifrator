@@ -1,20 +1,17 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.Scanner;
 
 public class EncryptedFile {
-    Scanner scanner = new Scanner(System.in);
-    CipherCeaser cipherCeaser = new CipherCeaser();
-
-    String pathNotEncrypted;
-    Path pathSaveCryptedText = null;
-    int key = 0;
+    private CipherCeaser cipherCeaser = new CipherCeaser();
+    private String pathNotEncrypted;
+    private Path pathSaveCryptedText = null;
+    private int key;
 
     private void inputFile() throws Exception {
         System.out.println("Введите путь к файлу: ");
+        Scanner scanner = new Scanner(System.in);
         pathNotEncrypted = scanner.nextLine();
         System.out.println("Введи ключ - ");
         key = Integer.parseInt(scanner.nextLine());

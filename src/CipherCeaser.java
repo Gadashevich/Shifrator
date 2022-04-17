@@ -27,7 +27,6 @@ public class CipherCeaser {
         }
         return stringBuilder.toString();
     }
-
     public String unEncrypt(String message, int key) {  //Расшифровываем данные
             return encrypt(message, key * (-1));
     }

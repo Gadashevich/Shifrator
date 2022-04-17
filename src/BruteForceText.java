@@ -4,13 +4,11 @@ import java.util.Scanner;
 
 public class BruteForceText {
 
-    CipherCeaser cipherCeaser = new CipherCeaser();
-    Scanner scanner = new Scanner(System.in);
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
     public void bruteForceText() throws Exception {
         System.out.println("Введите текст: ");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String message = reader.readLine();
+        CipherCeaser cipherCeaser = new CipherCeaser();
         for (int i = 0; i < cipherCeaser.alphabetSize; i++) {
             String unEncryptedText = cipherCeaser.unEncrypt(message, i);
             if (proverkaText(unEncryptedText)) {
@@ -35,6 +33,7 @@ public class BruteForceText {
         if (flag) {
             System.out.println(strings);
             System.out.println("Текст читаемый? Да / Нет");
+            Scanner scanner = new Scanner(System.in);
             String answer = scanner.nextLine();
             if (answer.equalsIgnoreCase("Да")) {
                 flag = true;
@@ -44,7 +43,4 @@ public class BruteForceText {
         }
         return flag;
     }
-
-
-
 }
