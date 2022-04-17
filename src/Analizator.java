@@ -1,17 +1,13 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
+import java.nio.file.*;
 import java.util.*;
 
 public class Analizator {
-    Scanner scanner = new Scanner(System.in);
 
     public void analize() throws IOException {
         HashMap<Character, Integer> closeFile = new HashMap<>();
         HashMap<Character, Integer> openFile = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите путь к файлу: ");
         String pathClose = scanner.nextLine();
@@ -68,11 +64,4 @@ public class Analizator {
          list.sort(comparator.reversed());
          return list;
      }
-/* 2 вариант посчитать кол-во чаров
-        for ( int i = 0; i < messageOpen.length(); i++ ) {
-        Integer n = openFile.get( messageOpen.charAt(i) );
-        if ( n == null ) openFile.put( messageOpen.charAt(i), 1 );
-        else openFile.put( messageOpen.charAt(i), ++n );
-    }
-*/
 }

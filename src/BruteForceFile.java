@@ -1,25 +1,18 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.nio.file.*;
+import java.util.*;
 
 public class BruteForceFile {
-    CipherCeaser cipherCeaser = new CipherCeaser();
     Scanner scanner = new Scanner(System.in);
 
-    String pathNotEncrypted;
-    Path pathSaveCryptedText = null;
+    private String pathNotEncrypted;
+    private Path pathSaveCryptedText = null;
 
     public void bruteForceFile() throws Exception {
         System.out.println("Введите путь к файлу: ");
         pathNotEncrypted = scanner.nextLine();
         boolean saveFile = true;
-
         while (saveFile) {
             System.out.println("Введите путь для сохранения файла: ");
             pathSaveCryptedText = Path.of(scanner.nextLine());
@@ -38,19 +31,17 @@ public class BruteForceFile {
                 saveFile = false;
             }
         }
-
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(pathNotEncrypted));
              BufferedWriter writer = Files.newBufferedWriter(Paths.get(String.valueOf(pathSaveCryptedText))))
         {
             StringBuilder stringBuilder = new StringBuilder();
-            ArrayList<String> list = new ArrayList<>();
-
+            List<String> list = new ArrayList<>();
             while (reader.ready()) {
                 String string = reader.readLine();
                 stringBuilder.append(string);
                 list.add(string);
             }
-
+            CipherCeaser cipherCeaser = new CipherCeaser();
             for (int key = 0; key < cipherCeaser.alphabetSize; key++) {
                 String unEncryptedFile = cipherCeaser.unEncrypt(stringBuilder.toString(), key);
                 if (proverkaFile(unEncryptedFile)) {

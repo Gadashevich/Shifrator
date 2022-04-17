@@ -2,11 +2,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class EncryptedText {
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    CipherCeaser cipherCeaser = new CipherCeaser();
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private CipherCeaser cipherCeaser = new CipherCeaser();
 
-    int key = 0;
-    String message;
+    private int key = 0;
+    private String message;
 
     private void inputText() throws Exception {
         System.out.println("Введите текст: ");
