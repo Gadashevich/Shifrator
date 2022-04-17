@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class BruteForceFile {
     CipherCeaser cipherCeaser = new CipherCeaser();
     Scanner scanner = new Scanner(System.in);
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     String pathNotEncrypted;
     Path pathSaveCryptedText = null;
